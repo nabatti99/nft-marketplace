@@ -125,7 +125,7 @@ function MyListingsPage(): JSX.Element {
   }
 
   return (
-    <main className="grow flex flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
+    <main className="grow flex flex-col gap-6 py-8 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">My Listings</h1>

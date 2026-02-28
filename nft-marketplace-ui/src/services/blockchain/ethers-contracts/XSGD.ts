@@ -228,9 +228,7 @@ export interface XSGD extends BaseContract {
     nameOrSignature: "burnFrom"
   ): TypedContractMethod<[account: AddressLike, value: BigNumberish], [void], "nonpayable">;
   getFunction(nameOrSignature: "decimals"): TypedContractMethod<[], [bigint], "view">;
-  getFunction(
-    nameOrSignature: "eip712Domain"
-  ): TypedContractMethod<
+  getFunction(nameOrSignature: "eip712Domain"): TypedContractMethod<
     [],
     [
       [string, string, string, bigint, string, string, bigint[]] & {

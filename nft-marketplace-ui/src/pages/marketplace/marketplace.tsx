@@ -175,7 +175,7 @@ function MarketplacePage(): JSX.Element {
   }
 
   return (
-    <main className="relative grow flex flex-col gap-6 overflow-hidden px-4 py-8 sm:px-6 lg:px-8">
+    <main className="relative grow flex flex-col gap-6 py-8 sm:px-6 lg:px-8">
       <div className="relative isolate flex gap-4 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-sky-950 via-cyan-900/85 to-blue-950 px-6 py-8 shadow-[0_24px_60px_-30px_rgba(6,182,212,0.75)] before:absolute before:inset-0 before:bg-[url('https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&w=1800&q=80')] before:bg-cover before:bg-center before:opacity-25 before:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-slate-950/85 after:via-slate-900/70 after:to-cyan-900/45 after:content-['']">
         <Image
           src={EthereumPng}

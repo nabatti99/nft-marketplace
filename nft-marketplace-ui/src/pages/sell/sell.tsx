@@ -122,7 +122,7 @@ function SellPage(): JSX.Element {
   }
 
   return (
-    <main className="grow flex justify-center px-4 py-8 sm:px-6 lg:px-8">
+    <main className="grow flex justify-center py-8 sm:px-6 lg:px-8">
       <Card className="relative isolate w-full max-w-2xl overflow-hidden rounded-3xl border border-sky-200/80 bg-gradient-to-br from-white/95 via-sky-50/90 to-cyan-100/80 shadow-[0_28px_70px_-42px_rgba(14,165,233,0.65)] backdrop-blur-md before:absolute before:inset-0 before:bg-[url('https://plus.unsplash.com/premium_photo-1674586761705-97be1a8c15a7?auto=format&fit=crop&w=1500&q=80')] before:bg-contain before:bg-bottom before:opacity-15 before:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-white/85 after:via-sky-50/70 after:to-cyan-100/60 after:content-['']">
         <CardHeader className="relative z-10 flex flex-col items-start gap-2 px-6 pt-6 sm:px-8">
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Sell NFT</h1>
