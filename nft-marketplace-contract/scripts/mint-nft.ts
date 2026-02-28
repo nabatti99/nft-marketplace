@@ -14,7 +14,7 @@ const deployedTestERC721Address = JSON.parse(
 
 const ERC721 = TestERC721__factory.connect(deployedTestERC721Address, deployer);
 
-const receiver = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8";
+const receiver = "0x3d73d2C88aFb22dFE8a3b6970Fe97B2bc438C75a";
 const tokenId = 5n;
 
 console.log(`Minting token ID ${tokenId} to ${receiver}...`);
