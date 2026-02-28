@@ -4,7 +4,7 @@ import {
   compareAddress,
   fetchActiveListings,
   getMarketplaceContract,
-  MarketplaceListing
+  MarketplaceListing,
 } from "@/services/blockchain/blockchain";
 import { addTransaction, invalidateRequests, updateTransaction } from "@/store/slice/blockchain.slice";
 import { useAppDispatch, useAppSelector } from "@/store/store";

@@ -46,7 +46,12 @@ function AppNavBar({ className, ...props }: NavbarProps) {
 
   return (
     <div className="sticky top-0 z-40 shrink-0 border-b border-white/20 bg-gradient-to-r from-sky-950/80 via-cyan-900/70 to-indigo-950/80 shadow-[0_12px_40px_-20px_rgba(14,165,233,0.9)] backdrop-blur-xl">
-      <Navbar isBlurred={false} className={cn("container mx-auto bg-transparent", className)} maxWidth="full" {...props}>
+      <Navbar
+        isBlurred={false}
+        className={cn("container mx-auto bg-transparent", className)}
+        maxWidth="full"
+        {...props}
+      >
         <NavbarBrand
           as={NavLink}
           to="/marketplace"
@@ -55,10 +60,7 @@ function AppNavBar({ className, ...props }: NavbarProps) {
           NFT Marketplace
         </NavbarBrand>
 
-        <NavbarContent
-          className="hidden gap-4 sm:flex"
-          justify="center"
-        >
+        <NavbarContent className="hidden gap-4 sm:flex" justify="center">
           <NavbarItem>
             <NavLink
               to="/marketplace"

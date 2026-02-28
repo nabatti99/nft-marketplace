@@ -180,7 +180,10 @@ function MarketplacePage(): JSX.Element {
         <Image
           src={EthereumPng}
           alt="Ethereum"
-          className="shrink-0 relative h-20 w-20 opacity-80 transition-all duration-300 transform-3d hover:scale-110"
+          classNames={{
+            wrapper:
+              "shrink-0 relative z-10 h-20 w-20 opacity-80 transition-all duration-300 transform-3d hover:scale-110",
+          }}
         />
         <div className="flex flex-col gap-2">
           <h1 className="relative z-10 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Marketplace</h1>

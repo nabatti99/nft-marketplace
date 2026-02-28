@@ -2,49 +2,77 @@
 /* tslint:disable */
 /* eslint-disable */
 
-
-import { ethers } from 'ethers'
-import { DeployContractOptions, FactoryOptions, HardhatEthersHelpers as HardhatEthersHelpersBase} from "@nomicfoundation/hardhat-ethers/types";
+import { ethers } from "ethers";
+import {
+  DeployContractOptions,
+  FactoryOptions,
+  HardhatEthersHelpers as HardhatEthersHelpersBase,
+} from "@nomicfoundation/hardhat-ethers/types";
 
 import * as Contracts from "./index.js";
 
 declare module "@nomicfoundation/hardhat-ethers/types" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
-  getContractFactory(name: 'NFTMarketplace', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.NFTMarketplace__factory>
-getContractFactory(name: 'TestERC721', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.TestERC721__factory>
-getContractFactory(name: 'XSGD', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.XSGD__factory>
+    getContractFactory(
+      name: "NFTMarketplace",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.NFTMarketplace__factory>;
+    getContractFactory(
+      name: "TestERC721",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TestERC721__factory>;
+    getContractFactory(
+      name: "XSGD",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.XSGD__factory>;
 
-  getContractAt(name: 'NFTMarketplace', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.NFTMarketplace>
-getContractAt(name: 'TestERC721', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.TestERC721>
-getContractAt(name: 'XSGD', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.XSGD>
+    getContractAt(
+      name: "NFTMarketplace",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.NFTMarketplace>;
+    getContractAt(
+      name: "TestERC721",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TestERC721>;
+    getContractAt(name: "XSGD", address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.XSGD>;
 
-  deployContract(name: 'NFTMarketplace', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.NFTMarketplace>
-deployContract(name: 'TestERC721', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.TestERC721>
-deployContract(name: 'XSGD', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.XSGD>
+    deployContract(
+      name: "NFTMarketplace",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.NFTMarketplace>;
+    deployContract(
+      name: "TestERC721",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.TestERC721>;
+    deployContract(name: "XSGD", signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.XSGD>;
 
-  deployContract(name: 'NFTMarketplace', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.NFTMarketplace>
-deployContract(name: 'TestERC721', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.TestERC721>
-deployContract(name: 'XSGD', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.XSGD>
+    deployContract(
+      name: "NFTMarketplace",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.NFTMarketplace>;
+    deployContract(
+      name: "TestERC721",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.TestERC721>;
+    deployContract(
+      name: "XSGD",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.XSGD>;
 
     // default types
-    getContractFactory(
-      name: string,
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<ethers.ContractFactory>;
-    getContractFactory(
-      abi: any[],
-      bytecode: ethers.BytesLike,
-      signer?: ethers.Signer
-    ): Promise<ethers.ContractFactory>;
+    getContractFactory(name: string, signerOrOptions?: ethers.Signer | FactoryOptions): Promise<ethers.ContractFactory>;
+    getContractFactory(abi: any[], bytecode: ethers.BytesLike, signer?: ethers.Signer): Promise<ethers.ContractFactory>;
     getContractAt(
       nameOrAbi: string | any[],
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<ethers.Contract>;
-    deployContract(
-      name: string,
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<ethers.Contract>;
+    deployContract(name: string, signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<ethers.Contract>;
     deployContract(
       name: string,
       args: any[],
@@ -52,4 +80,3 @@ deployContract(name: 'XSGD', args: any[], signerOrOptions?: ethers.Signer | Depl
     ): Promise<ethers.Contract>;
   }
 }
-  
