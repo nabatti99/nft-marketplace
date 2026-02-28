@@ -8,9 +8,10 @@ import {
 } from "@/services/blockchain/blockchain";
 import { addTransaction, invalidateRequests, updateTransaction } from "@/store/slice/blockchain.slice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { addToast, Button, Card, CardBody, Spinner } from "@heroui/react";
+import { addToast, Button, Card, CardBody, Image, Spinner } from "@heroui/react";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import EmptyBoxPng from "@/pages/marketplace/assets/empty-box.png";
 
 function MyListingsPage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -124,40 +125,56 @@ function MyListingsPage(): JSX.Element {
   }
 
   return (
-    <main className="grow flex flex-col gap-4 py-8">
+    <main className="grow flex flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">My Listings</h1>
-          <p className="text-sm text-foreground-500">Manage your active NFT listings.</p>
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">My Listings</h1>
+          <p className="text-sm text-slate-600 sm:text-base">Manage your active NFT listings.</p>
         </div>
       </div>
 
       {!walletAddress ? (
-        <Card>
-          <CardBody>Connect your wallet to view and manage your listings.</CardBody>
+        <Card className="rounded-2xl border border-sky-200/70 bg-gradient-to-br from-white/95 via-sky-50/85 to-cyan-100/70 shadow-[0_20px_45px_-32px_rgba(14,165,233,0.6)]">
+          <CardBody className="p-10 text-cyan-600">Connect your wallet to view and manage your listings.</CardBody>
         </Card>
       ) : isLoading ? (
-        <div className="grow flex justify-center items-center">
+        <div className="grow flex items-center justify-center rounded-2xl border border-sky-200/70 bg-gradient-to-br from-white/95 via-sky-50/85 to-cyan-100/70 py-16 shadow-[0_20px_45px_-32px_rgba(14,165,233,0.6)]">
           <Spinner label="Loading your listings..." />
         </div>
       ) : listings.length === 0 ? (
-        <Card>
-          <CardBody>You have no active listings.</CardBody>
+        <Card className="rounded-2xl border border-sky-200/70 bg-gradient-to-br from-white/95 via-sky-50/85 to-cyan-100/70 shadow-[0_20px_45px_-32px_rgba(14,165,233,0.6)]">
+          <CardBody className="py-10 items-center">
+            <Image src={EmptyBoxPng} alt="No Listings" className="mx-auto mb-4 h-72 w-72 opacity-70" />
+            <p className="text-center text-cyan-600">You have no active listings.</p>
+          </CardBody>
         </Card>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {listings.map(listing => (
-            <Card key={listing.key}>
-              <CardBody className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <Card
+              key={listing.key}
+              className="rounded-2xl border border-sky-200/70 bg-white/90 shadow-[0_20px_45px_-35px_rgba(14,165,233,0.55)] transition-all duration-200 hover:shadow-[0_24px_52px_-34px_rgba(14,165,233,0.7)]"
+            >
+              <CardBody className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col gap-1">
-                  <div className="font-semibold">
+                  <div className="text-base font-semibold text-slate-900">
                     Token #{listing.tokenId.toString()} · {ethers.formatUnits(listing.price, 18)} XSGD
                   </div>
-                  <div className="text-sm">
-                    Collection: <BlockchainAddress address={listing.nftContract} type="short" className="inline-flex" />
+                  <div className="text-sm text-slate-600">
+                    Collection:{" "}
+                    <BlockchainAddress
+                      address={listing.nftContract}
+                      type="short"
+                      className="inline-flex text-sky-700 hover:text-cyan-700"
+                    />
                   </div>
                 </div>
-                <Button color="danger" onPress={() => onCancelListing(listing)} isLoading={actionKey === listing.key}>
+                <Button
+                  color="danger"
+                  className="rounded-full border border-red-200 bg-red-50 font-semibold text-red-700 shadow-sm transition-colors duration-200 hover:bg-red-100"
+                  onPress={() => onCancelListing(listing)}
+                  isLoading={actionKey === listing.key}
+                >
                   Cancel Listing
                 </Button>
               </CardBody>

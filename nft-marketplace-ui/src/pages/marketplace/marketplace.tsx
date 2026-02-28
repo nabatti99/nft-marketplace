@@ -13,9 +13,11 @@ import {
 } from "@/services/blockchain/blockchain";
 import { addTransaction, invalidateRequests, updateTransaction } from "@/store/slice/blockchain.slice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { addToast, Button, Card, CardBody, Link, Spinner } from "@heroui/react";
+import { addToast, Button, Card, CardBody, Image, Link, Spinner } from "@heroui/react";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import EthereumPng from "./assets/ethereum.png";
+import EmptyBoxPng from "./assets/empty-box.png";
 
 function MarketplacePage(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -173,32 +175,42 @@ function MarketplacePage(): JSX.Element {
   }
 
   return (
-    <main className="grow flex flex-col gap-4 py-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold">Marketplace</h1>
-        <p className="text-sm text-foreground-500">
-          Browse active listings and purchase NFTs with{" "}
-          <Link
-            className="text-sm"
-            href={createExplorerLink(MARKETPLACE_CONFIG.xsgdAddress, "address")}
-            target="_blank"
-          >
-            XSGD
-          </Link>
-          .
-        </p>
+    <main className="relative grow flex flex-col gap-6 overflow-hidden px-4 py-8 sm:px-6 lg:px-8">
+      <div className="relative isolate flex gap-4 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-sky-950 via-cyan-900/85 to-blue-950 px-6 py-8 shadow-[0_24px_60px_-30px_rgba(6,182,212,0.75)] before:absolute before:inset-0 before:bg-[url('https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&w=1800&q=80')] before:bg-cover before:bg-center before:opacity-25 before:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-slate-950/85 after:via-slate-900/70 after:to-cyan-900/45 after:content-['']">
+        <Image
+          src={EthereumPng}
+          alt="Ethereum"
+          className="shrink-0 relative h-20 w-20 opacity-80 transition-all duration-300 transform-3d hover:scale-110"
+        />
+        <div className="flex flex-col gap-2">
+          <h1 className="relative z-10 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Marketplace</h1>
+          <p className="relative z-10 max-w-2xl text-sm text-cyan-100/90 sm:text-base">
+            Browse active listings and purchase NFTs with{" "}
+            <Link
+              className="text-sm font-semibold text-cyan-200 underline decoration-cyan-300/80 underline-offset-4 transition-colors hover:text-white"
+              href={createExplorerLink(MARKETPLACE_CONFIG.xsgdAddress, "address")}
+              target="_blank"
+            >
+              XSGD
+            </Link>
+            .
+          </p>
+        </div>
       </div>
 
       {isLoadingListings ? (
-        <div className="grow flex justify-center items-center">
+        <div className="grow flex items-center justify-center rounded-2xl border border-white/20 bg-slate-900/45 py-16 shadow-lg backdrop-blur-sm">
           <Spinner label="Loading listings..." />
         </div>
       ) : listings.length === 0 ? (
-        <Card>
-          <CardBody>No active listings found.</CardBody>
+        <Card className="border border-dashed border-cyan-300/40 bg-white/10 shadow-lg backdrop-blur-sm">
+          <CardBody className="py-10 items-center">
+            <Image src={EmptyBoxPng} alt="No Listings" className="mx-auto mb-4 h-72 w-72 opacity-70" />
+            <p className="text-center text-cyan-600">No active listings found.</p>
+          </CardBody>
         </Card>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
           {listings.map(listing => {
             const listedByYou = walletAddress ? compareAddress(walletAddress, listing.seller) : false;
             const requiresApproval = walletAddress ? xsgdAllowance < listing.price : false;
@@ -211,24 +223,36 @@ function MarketplacePage(): JSX.Element {
                   : "Buy";
 
             return (
-              <Card key={listing.key}>
-                <CardBody className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex flex-col gap-1">
-                    <div className="font-semibold">
+              <Card
+                key={listing.key}
+                className="group border border-white/20 bg-gradient-to-br from-slate-900/80 via-cyan-950/55 to-blue-950/75 shadow-[0_20px_50px_-30px_rgba(34,211,238,0.7)] backdrop-blur-md transition-all duration-300 hover:border-cyan-300/55 hover:shadow-[0_28px_55px_-26px_rgba(34,211,238,0.85)]"
+              >
+                <CardBody className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex flex-col gap-1.5">
+                    <div className="text-base font-semibold text-slate-100">
                       Token #{listing.tokenId.toString()} · {ethers.formatUnits(listing.price, 18)} XSGD
                     </div>
-                    <div className="text-sm">
+                    <div className="text-sm text-cyan-100/80">
                       Collection:{" "}
-                      <BlockchainAddress address={listing.nftContract} type="short" className="inline-flex" />
+                      <BlockchainAddress
+                        address={listing.nftContract}
+                        type="short"
+                        className="inline-flex text-cyan-200 hover:text-cyan-100"
+                      />
                     </div>
-                    <div className="text-sm">
-                      Seller: <BlockchainAddress address={listing.seller} type="short" className="inline-flex" />
+                    <div className="text-sm text-cyan-100/80">
+                      Seller:{" "}
+                      <BlockchainAddress
+                        address={listing.seller}
+                        type="short"
+                        className="inline-flex text-cyan-200 hover:text-cyan-100"
+                      />
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 px-2 py-1">
                     {isLoadingAllowance && walletAddress ? <Spinner size="sm" /> : null}
                     <Button
-                      color="primary"
+                      className="rounded-full bg-cyan-50 font-semibold text-cyan-900 shadow-lg disabled:opacity-70"
                       onPress={() => handleListingAction(listing)}
                       isDisabled={listedByYou}
                       isLoading={actionKey === listing.key}
